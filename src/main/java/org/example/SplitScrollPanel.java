@@ -43,8 +43,9 @@ public class SplitScrollPanel extends JPanel implements ListSelectionListener {
                 JButton tmp = new JButton();
                 tmp.setBackground(Color.WHITE);
                 tmp.setBounds(x, y, 20, 20);
-                panelForButton.add(tmp);
+                tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\накид.gif"));
 
+                panelForButton.add(tmp);
                 x += 20;
             }
             y += 20;
