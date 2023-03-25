@@ -12,7 +12,7 @@ public class SplitScrollPanel extends JPanel implements ListSelectionListener {
     private JList list;
     private JSplitPane splitPane;
     private String[] imageNames = {"лицевая петля", "изнаночная петля", "накид"};
-    JButton tmp = new JButton();
+    private JButton []tmp;
 
     public SplitScrollPanel(int rows, int columns) {
 
@@ -33,21 +33,25 @@ public class SplitScrollPanel extends JPanel implements ListSelectionListener {
 
         //создаем панель для размещения поля
         JPanel panelForButton = new JPanel();
-        panelForButton.setPreferredSize(new Dimension((rows*20)+120, (columns*20)+120));
+       panelForButton.setPreferredSize(new Dimension((rows*20)+120, (columns*20)+120));
+      //  panelForButton.setPreferredSize(new Dimension(600, 500));
         panelForButton.setLayout (null);
         int y = 60;
+       tmp = new JButton[columns*rows];
         for (int i = 0; i < rows; i++) {
             int x = 60;
-            for (int j = 0; j < columns; j++) {
+            for ( int j = 0; j < columns; j++) {
 
-            //   JButton tmp = new JButton();
-                tmp.setBackground(Color.WHITE);
-                tmp.setBounds(x, y, 20, 20);
-                IconAction iconAction = new IconAction(new ImageIcon());
-               // tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\лицевая петля.gif"));
+       tmp [j]= new JButton();
+                tmp[j].setBackground(Color.WHITE);
+                tmp[j].setBounds(x, y, 20, 20);
 
-             tmp.addActionListener(iconAction);
-                panelForButton.add(tmp);
+             //   IconAction iconAction = new IconAction(new ImageIcon());
+              //  tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\лицевая петля.gif"));
+                //       tmp[j].addActionListener(iconAction);
+                int finalJ = j;
+                tmp[j].addActionListener(event->tmp[finalJ].setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\"+imageNames[list.getSelectedIndex()]+".gif")));
+                panelForButton.add(tmp[j]);
                 x += 20;
             }
             y += 20;
@@ -89,18 +93,19 @@ private class IconAction implements ActionListener{
         private ImageIcon current;
 
 
-        public IconAction(ImageIcon i) {
-            current = i;
+       public IconAction(ImageIcon i) {
+           current = i;
         }
 
     @Override
     public void actionPerformed(ActionEvent event) {
-           if(list.getSelectedIndex()==0)
-                tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\лицевая петля.gif"));
-        if(list.getSelectedIndex()==1)
-            tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\изнаночная петля.gif"));
-        if(list.getSelectedIndex()==2)
-            tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\накид.gif"));
+          // if(list.getSelectedIndex()==0)
+
+         //      tmp[j].setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\лицевая петля.gif"));
+//        if(list.getSelectedIndex()==1)
+//            tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\изнаночная петля.gif"));
+//        if(list.getSelectedIndex()==2)
+//            tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\накид.gif"));
 
     }
 

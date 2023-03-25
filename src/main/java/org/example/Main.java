@@ -27,6 +27,7 @@ public class Main {
             frame.setIconImage(img);
            SplitScrollPanel splitPane = new SplitScrollPanel(numberRowInt,numberColumnInt);
            frame.getContentPane().add(splitPane.getSplitPane());
+      //      frame.setResizable(false);
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 //
 

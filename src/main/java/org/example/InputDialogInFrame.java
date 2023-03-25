@@ -42,7 +42,7 @@ public class InputDialogInFrame extends JFrame {
                 numberInt = Integer.parseInt(inputString);
             }
 
-        } if (numberInt>0) {return numberInt;}
+        } if (numberInt>0 && numberInt<101) {return numberInt;}
         else {return minNumber;}
 
         }
