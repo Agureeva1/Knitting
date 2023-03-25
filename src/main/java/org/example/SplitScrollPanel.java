@@ -4,17 +4,17 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SplitScrollPanel extends JPanel implements ListSelectionListener {
 
-
     private JList list;
     private JSplitPane splitPane;
-    private String[] imageNames = {"петля", "изнаночная петля", "накид", "столбик с накидом"};
-
+    private String[] imageNames = {"лицевая петля", "изнаночная петля", "накид"};
+    JButton tmp = new JButton();
 
     public SplitScrollPanel(int rows, int columns) {
-
 
         //Создаем список петель и помещаем его в область прокрутки
 
@@ -40,11 +40,13 @@ public class SplitScrollPanel extends JPanel implements ListSelectionListener {
             int x = 60;
             for (int j = 0; j < columns; j++) {
 
-                JButton tmp = new JButton();
+            //   JButton tmp = new JButton();
                 tmp.setBackground(Color.WHITE);
                 tmp.setBounds(x, y, 20, 20);
-                tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\накид.gif"));
+                IconAction iconAction = new IconAction(new ImageIcon());
+               // tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\лицевая петля.gif"));
 
+             tmp.addActionListener(iconAction);
                 panelForButton.add(tmp);
                 x += 20;
             }
@@ -82,4 +84,26 @@ public class SplitScrollPanel extends JPanel implements ListSelectionListener {
         return splitPane;
     }
 
+private class IconAction implements ActionListener{
+
+        private ImageIcon current;
+
+
+        public IconAction(ImageIcon i) {
+            current = i;
+        }
+
+    @Override
+    public void actionPerformed(ActionEvent event) {
+           if(list.getSelectedIndex()==0)
+                tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\лицевая петля.gif"));
+        if(list.getSelectedIndex()==1)
+            tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\изнаночная петля.gif"));
+        if(list.getSelectedIndex()==2)
+            tmp.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\накид.gif"));
+
+    }
+
+    }
 }
+
