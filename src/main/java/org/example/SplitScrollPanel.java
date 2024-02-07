@@ -8,10 +8,11 @@ import java.awt.*;
 
 public class SplitScrollPanel extends JPanel implements ListSelectionListener {
 
-    private final JList list;
+    private static JList list;
     private final JSplitPane splitPane;
-    private final String[] imageNames = {"очистить", "лицевая петля", "изнаночная петля", "кромочная петля", "изнаночная скрещенная петля", "лицевая скрещенная петля", "петля платочной вязки", "снятая петля, нить за работой", "снятая петля, нить перед работой", "накид", "обратный накид", "свободный накид", "две вместе лицевой с наклоном влево(протяжка)", "две вместе лицевой с наклоном вправо", "три вместе лицевой методом перестановки(двойная протяжка)", "три вместе изнаночной", "три вместе методом перекида", "четыре вместе лицевой", "четыре вместе изнаночной", "три лицевые петли из трех вместе"};
+    private static final String[] imageNames = {"очистить", "лицевая петля", "изнаночная петля", "кромочная петля", "изнаночная скрещенная петля", "лицевая скрещенная петля", "петля платочной вязки", "снятая петля, нить за работой", "снятая петля, нить перед работой", "накид", "обратный накид", "свободный накид", "две вместе лицевой с наклоном влево(протяжка)", "две вместе лицевой с наклоном вправо", "три вместе лицевой методом перестановки(двойная протяжка)", "три вместе изнаночной", "три вместе методом перекида", "четыре вместе лицевой", "четыре вместе изнаночной", "три лицевые петли из трех вместе"};
     private static JButton[][] tmp;
+    private static ImageIcon picture = new ImageIcon("src\\main\\java\\нитки.gif");
 
 
     public SplitScrollPanel(int rows, int columns) {
@@ -33,7 +34,9 @@ public class SplitScrollPanel extends JPanel implements ListSelectionListener {
         iconCone.setMargin(new Insets(0, 0, 0, 0));
         iconCone.setBackground(Color.WHITE);
         iconCone.setBounds(40, 40, 20, 20);
-        iconCone.setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\нитки.gif"));
+        iconCone.setIcon(picture);
+        iconCone.setDisabledIcon(picture);
+        iconCone.setEnabled(false);
         panelForButton.add(iconCone);
 
         int hy = 40;
@@ -77,7 +80,7 @@ public class SplitScrollPanel extends JPanel implements ListSelectionListener {
                 tmp[i][j].setBounds(x, y, 20, 20);
                 int finalJ = j;
                 int finalI = i;
-                tmp[i][j].addActionListener(event -> tmp[finalI][finalJ].setIcon(new ImageIcon("C:\\Users\\aagureeva\\IdeaProjects\\Knitting\\src\\main\\java\\loops\\" + imageNames[list.getSelectedIndex()] + ".gif")));
+                tmp[i][j].addActionListener(event -> tmp[finalI][finalJ].setIcon(new ImageIcon("src\\main\\java\\loops\\" + imageNames[list.getSelectedIndex()] + ".gif")));
                 panelForButton.add(tmp[i][j]);
                 x += 20;
             }
@@ -116,5 +119,14 @@ public class SplitScrollPanel extends JPanel implements ListSelectionListener {
         SplitScrollPanel.tmp[r][c].setIcon(null);
     }
 
+    public static void setTmpCellNewIcon(int r, int c) {
+        SplitScrollPanel.tmp[r][c].setIcon((new ImageIcon("src\\main\\java\\loops\\" + imageNames[list.getSelectedIndex()] + ".gif")));
+    }
+
+    public static void setTmpCellFromToNewIcon(int numRow, int from, int to) {
+        for (int i = from - 1; i < to; i++) {
+            SplitScrollPanel.tmp[numRow-1][i].setIcon((new ImageIcon("src\\main\\java\\loops\\" + imageNames[list.getSelectedIndex()] + ".gif")));
+        }
+    }
 }
 

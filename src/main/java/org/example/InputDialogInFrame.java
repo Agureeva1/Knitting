@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InputDialogInFrame extends JFrame {
+    Image img = new ImageIcon("src/main/java/нитки.gif").getImage();
+
     private static char[] result;
 
     public InputDialogInFrame() {
 
         getContentPane().setBackground(Color.DARK_GRAY);
-        Image img = new ImageIcon("C:/Users/aagureeva/IdeaProjects/Knitting/src/main/java/нитки.gif").getImage();
         setIconImage(img);
         setTitle("Вяжем с Леной");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
